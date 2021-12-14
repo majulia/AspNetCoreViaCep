@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BuscaCep.WebApi.Data;
 using BuscaCep.WebApi.Models;
+using BuscaCep.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,84 +12,45 @@ namespace BuscaCep.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class EnderecoController : ControllerBase
     {
-        private readonly BuscaContext _context;
+        private readonly ViaCepService _viaCepService;
 
-        public EnderecoController(BuscaContext context)
+        private readonly IRepository _repo;
+
+        public EnderecoController(
+            ViaCepService viaCepService,
+            IRepository repo
+        )
         {
-            _context = context;
+            _viaCepService = viaCepService;
+            _repo = repo;
         }
-
-
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Enderecos);
-
+            var result = _repo.GetEnderecos();
+            return Ok(result);
         }
 
-
-        // /api/endereco/id
-        [HttpGet("byId/{id}")]
-
-        public IActionResult GetById(int id){
-           var endereco = _context.Enderecos.FirstOrDefault(e => e.Id == id);
-           return endereco == null ? BadRequest("Não encontrado") : Ok(endereco);
-        }
-
-
-        // /api/endereco/byCep?cep=12500000
-
-        [HttpGet("byCep")]
+         [HttpGet("{cep}")]
         public IActionResult GetByCep(string cep)
         {
-            var endereco = _context.Enderecos.FirstOrDefault(e => e.Cep.Contains(cep));
-
-            return endereco == null ? NotFound() : Ok(endereco);
-
+            Endereco endereco = _viaCepService.GetEnderecoByCep(cep);
+            return Ok(endereco);
         }
 
         [HttpPost]
         public IActionResult Post(Endereco endereco)
         {
-            _context.Add(endereco);
-            _context.SaveChanges();
-            return Ok(endereco);
-        }
-
-
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Endereco endereco)
-        {
-            var end = _context.Enderecos.AsNoTracking().FirstOrDefault(e => e.Id == id);
-            if (end == null) return BadRequest("Endereço não encontrado");
-
-            _context.Update(endereco);
-            _context.SaveChanges();
-            return Ok(endereco);
-        }
-
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Endereco endereco)
-        {
-            var end = _context.Enderecos.AsNoTracking().FirstOrDefault(e => e.Id == id);
-            if (end == null) return BadRequest("Endereço não encontrado");
-            _context.Update(endereco);
-            _context.SaveChanges();
-            return Ok(endereco);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var endereco = _context.Enderecos.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            if (endereco == null) return BadRequest("Endereço não encontrado");
-            _context.Remove(endereco);
-            _context.SaveChanges();
-            return Ok("Removido com sucesso");
+            _repo.Add (endereco);
+            if (_repo.SaveChanges())
+            {
+                return Ok(endereco);
+            }
+            return BadRequest("Endereço não cadastrado.");
         }
     }
 }
+      

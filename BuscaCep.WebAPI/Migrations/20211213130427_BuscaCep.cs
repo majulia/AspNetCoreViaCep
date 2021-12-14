@@ -2,7 +2,7 @@
 
 namespace BuscaCep.WebApi.Migrations
 {
-    public partial class init : Migration
+    public partial class BuscaCep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,17 +27,17 @@ namespace BuscaCep.WebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Enderecos",
                 columns: new[] { "Id", "Bairro", "Cep", "Complemento", "Localidade", "Logradouro", "Uf" },
-                values: new object[] { 1, "Pedregulho", "12515160", "", "Guaratinguetá", "Rua Alfonso Giannico", "SP" });
+                values: new object[] { 1, "Sé", "01001-000", "lado ímpar", "São Paulo", "Praça da Sé", "SP" });
 
             migrationBuilder.InsertData(
                 table: "Enderecos",
                 columns: new[] { "Id", "Bairro", "Cep", "Complemento", "Localidade", "Logradouro", "Uf" },
-                values: new object[] { 2, "Pedregulho", "12345678", "", "Guaratinguetá", "Rua Alfonso Giannico", "SP" });
+                values: new object[] { 2, "Sé", "01001-000", "lado ímpar", "São Paulo", "Praça da Sé", "SP" });
 
             migrationBuilder.InsertData(
                 table: "Enderecos",
                 columns: new[] { "Id", "Bairro", "Cep", "Complemento", "Localidade", "Logradouro", "Uf" },
-                values: new object[] { 3, "Pedregulho", "87654321", "", "Guaratinguetá", "Rua Alfonso Giannico", "SP" });
+                values: new object[] { 3, "Sé", "01001-000", "lado ímpar", "São Paulo", "Praça da Sé", "SP" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

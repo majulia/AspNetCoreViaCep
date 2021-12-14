@@ -14,9 +14,9 @@ namespace BuscaCep.WebApi.Data
 
             builder.Entity<Endereco>()
                 .HasData(new List<Endereco>(){
-                    new Endereco(1, "12515160", "Rua Alfonso Giannico", "", "Pedregulho", "Guaratinguetá", "SP"),
-                    new Endereco(2, "12345678", "Rua Alfonso Giannico", "", "Pedregulho", "Guaratinguetá", "SP"),
-                    new Endereco(3, "87654321", "Rua Alfonso Giannico", "", "Pedregulho", "Guaratinguetá", "SP"),
+                    new Endereco(1, "01001-000", "Praça da Sé", "lado ímpar", "Sé", "São Paulo", "SP"),
+                    new Endereco(2, "01001-000", "Praça da Sé", "lado ímpar", "Sé", "São Paulo", "SP"),
+                    new Endereco(3, "01001-000", "Praça da Sé", "lado ímpar", "Sé", "São Paulo", "SP"),
                 });
         }
 

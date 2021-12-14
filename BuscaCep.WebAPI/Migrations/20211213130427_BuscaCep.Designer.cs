@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuscaCep.WebApi.Migrations
 {
     [DbContext(typeof(BuscaContext))]
-    [Migration("20211028204612_init")]
-    partial class init
+    [Migration("20211213130427_BuscaCep")]
+    partial class BuscaCep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,31 +49,31 @@ namespace BuscaCep.WebApi.Migrations
                         new
                         {
                             Id = 1,
-                            Bairro = "Pedregulho",
-                            Cep = "12515160",
-                            Complemento = "",
-                            Localidade = "Guaratinguetá",
-                            Logradouro = "Rua Alfonso Giannico",
+                            Bairro = "Sé",
+                            Cep = "01001-000",
+                            Complemento = "lado ímpar",
+                            Localidade = "São Paulo",
+                            Logradouro = "Praça da Sé",
                             Uf = "SP"
                         },
                         new
                         {
                             Id = 2,
-                            Bairro = "Pedregulho",
-                            Cep = "12345678",
-                            Complemento = "",
-                            Localidade = "Guaratinguetá",
-                            Logradouro = "Rua Alfonso Giannico",
+                            Bairro = "Sé",
+                            Cep = "01001-000",
+                            Complemento = "lado ímpar",
+                            Localidade = "São Paulo",
+                            Logradouro = "Praça da Sé",
                             Uf = "SP"
                         },
                         new
                         {
                             Id = 3,
-                            Bairro = "Pedregulho",
-                            Cep = "87654321",
-                            Complemento = "",
-                            Localidade = "Guaratinguetá",
-                            Logradouro = "Rua Alfonso Giannico",
+                            Bairro = "Sé",
+                            Cep = "01001-000",
+                            Complemento = "lado ímpar",
+                            Localidade = "São Paulo",
+                            Logradouro = "Praça da Sé",
                             Uf = "SP"
                         });
                 });
